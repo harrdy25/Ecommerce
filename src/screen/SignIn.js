@@ -12,8 +12,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {images} from '../assets/Images';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
-const Login = ({navigation}) => {
-
+const SignIn = ({navigation}) => {
   const [hidePass, setHidePass] = useState(true);
 
   return (
@@ -28,51 +27,52 @@ const Login = ({navigation}) => {
         <View style={{alignItems: 'center', marginVertical: 10}}>
           <Image style={styles.Logo} source={images.IMG_GRABBY_PNG} />
         </View>
-        <Text style={styles.SignUp}>WELCOME BACK</Text>
-
+        <Text style={styles.SignUp}>SIGN UP</Text>
+        <View style={styles.NameBox}>
+          <TextInput style={styles.Name} placeholder="Name" />
+        </View>
         <View style={styles.NameBox}>
           <TextInput style={styles.Name} placeholder="Email" />
         </View>
         <View style={[styles.NameBox, {flexDirection: 'row'}]}>
-          <TextInput style={styles.Name} 
-          placeholder="Password" 
-          flex={1} 
-          secureTextEntry={hidePass ? true : false}
+          <TextInput
+            style={styles.Name}
+            placeholder="Password"
+            secureTextEntry={hidePass ? true : false}
+            flex={1}
           />
-          <Ionicons name={hidePass ? 'eye-off' : 'eye'} style={styles.MenuIcon} size={20} onPress={() => setHidePass(!hidePass)}/>
+          <Ionicons
+            name={hidePass ? 'eye-off' : 'eye'}
+            style={styles.MenuIcon}
+            size={20}
+            onPress={() => setHidePass(!hidePass)}
+          />
         </View>
-        <Text
-          style={{
-            fontSize: 18,
-            marginLeft: 10,
-            marginVertical: 10,
-            color: '#c67100',
-            fontWeight: '600',
-          }}>
-          Forgot Password?
-        </Text>
+        <View style={styles.NameBox}>
+          <TextInput style={styles.Name} placeholder="Phone no" />
+        </View>
+        <TouchableOpacity
+          style={styles.SignUpBox}
+          onPress={() => navigation.navigate('Login')}>
+          <Text style={styles.Sign}>Sign Up</Text>
+        </TouchableOpacity>
         <View
           style={{
             flexDirection: 'row',
             alignItems: 'center',
             justifyContent: 'center',
-            marginTop: 20,
+            marginVertical: 20,
           }}>
-          <Ionicons name="logo-google" style={styles.MenuIcon} size={40} />
-          <Ionicons name="logo-facebook" style={styles.MenuIcon} size={40} />
-          <Ionicons name="logo-twitter" style={styles.MenuIcon} size={40} />
+          <Ionicons name="logo-google" style={styles.MenuIcon} size={30} />
+          <Ionicons name="logo-facebook" style={styles.MenuIcon} size={30} />
+          <Ionicons name="logo-twitter" style={styles.MenuIcon} size={30} />
         </View>
-        <TouchableOpacity
-          style={styles.SignUpBox}
-          onPress={() => navigation.navigate('Login')}>
-          <Text style={styles.Sign}>Login</Text>
-        </TouchableOpacity>
         <Text style={{fontSize: 18, textAlign: 'center'}}>
-          Don't have an account?{' '}
+          You have an account already?{' '}
           <Text
             style={styles.Login}
-            onPress={() => navigation.navigate('SignUp')}>
-            Sign Up
+            onPress={() => navigation.navigate('Login')}>
+            Login
           </Text>
         </Text>
       </View>
@@ -80,7 +80,7 @@ const Login = ({navigation}) => {
   );
 };
 
-export default Login;
+export default SignIn;
 
 const styles = StyleSheet.create({
   MenuIcon: {
@@ -109,8 +109,9 @@ const styles = StyleSheet.create({
   SignUpBox: {
     borderRadius: 8,
     marginHorizontal: 10,
-    marginVertical: 20,
+    marginVertical: 5,
     backgroundColor: '#ffa000',
+    marginTop: 40,
   },
   Sign: {
     fontSize: 20,
