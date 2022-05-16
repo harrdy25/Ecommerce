@@ -1,11 +1,11 @@
-import {StyleSheet, Text, View} from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 import React from 'react';
 import 'react-native-gesture-handler';
-import {NavigationContainer} from '@react-navigation/native';
-import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import {createDrawerNavigator} from '@react-navigation/drawer';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Welcome from './src/screen/Welcome';
 import Home from './src/screen/Home';
 import Login from './src/screen/Login';
@@ -13,6 +13,7 @@ import SignIn from './src/screen/SignIn';
 import Product from './src/screen/Product';
 import { Provider } from 'react-redux';
 import { store } from './src/redux/store';
+import Counter from './src/screen/Counter';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -21,8 +22,8 @@ const Tab = createBottomTabNavigator();
 function TabHandler() {
   return (
     <Tab.Navigator
-      screenOptions={({route}) => ({
-        tabBarIcon: ({focused, color, size}) => {
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
           let iconName;
 
           if (route.name === 'HOME') {
@@ -41,19 +42,19 @@ function TabHandler() {
         tabBarInactiveTintColor: '#757575',
       })}>
       <Tab.Screen
-        name="Welcome"
-        component={Welcome}
-        options={{headerShown: false}}
+        name="Counter"
+        component={Counter}
+        options={{ headerShown: false }}
       />
       <Tab.Screen
         name="HOME"
         component={HomeScreenStack}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
       <Tab.Screen
         name="Login"
         component={Login}
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
       />
     </Tab.Navigator>
   );
@@ -66,12 +67,12 @@ function HomeScreenStack() {
     <HomeStack.Navigator>
       <HomeStack.Screen
         name="Home"
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={Home}
       />
       <HomeStack.Screen
         name="Product"
-        options={{headerShown: false}}
+        options={{ headerShown: false }}
         component={Product}
       />
     </HomeStack.Navigator>
@@ -83,13 +84,13 @@ const App = () => {
     <Provider store={store}>
       <NavigationContainer>
         <Drawer.Navigator
-          screenOptions={{headerShown: false}}
+          screenOptions={{ headerShown: false }}
           initialRouteName="Welcome">
           <Drawer.Screen
             name="Welcomee"
             component={TabHandler}
             options={{
-              drawerIcon: ({focused, size}) => (
+              drawerIcon: ({ focused, size }) => (
                 <MaterialCommunityIcons
                   name="alpha-w-circle"
                   size={size}
@@ -102,7 +103,7 @@ const App = () => {
             name="Home"
             component={Home}
             options={{
-              drawerIcon: ({focused, size}) => (
+              drawerIcon: ({ focused, size }) => (
                 <MaterialCommunityIcons
                   name="home"
                   size={size}
@@ -115,7 +116,7 @@ const App = () => {
             name="SignUp"
             component={SignIn}
             options={{
-              drawerIcon: ({focused, size}) => (
+              drawerIcon: ({ focused, size }) => (
                 <MaterialCommunityIcons
                   name="login"
                   size={size}
@@ -128,7 +129,7 @@ const App = () => {
             name="Login"
             component={Login}
             options={{
-              drawerIcon: ({focused, size}) => (
+              drawerIcon: ({ focused, size }) => (
                 <MaterialCommunityIcons
                   name="logout"
                   size={size}
