@@ -11,7 +11,7 @@ import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityI
 import { useSelector } from 'react-redux';
 
 const Home = ({navigation}) => {
-  const count = useSelector(state => state.counter)
+  // const count = useSelector(state => state.counter)
   return (
     <SafeAreaView style={{flex: 1}}>
       <View style={{flex: 1}}>
@@ -22,7 +22,7 @@ const Home = ({navigation}) => {
             style={styles.MenuIcon}
             onPress={() => navigation.openDrawer()}
           />
-          <Text style={styles.Title}>Home {count.count}</Text>
+          <Text style={styles.Title}>Home</Text>
         </View>
         <View style={{borderWidth: 1}} />
         <View>

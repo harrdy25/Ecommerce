@@ -11,9 +11,31 @@ import React, {useState} from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {images} from '../assets/Images';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useDispatch } from 'react-redux';
+import { signupUser } from '../redux/action/user.action';
 
 const SignIn = ({navigation}) => {
   const [hidePass, setHidePass] = useState(true);
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [phone, setPhone] = useState('');
+
+  const dispatch = useDispatch();
+
+  const handleSignup = () => {
+    let data = {
+      //id: Math.floor(Math.random() * 1000),
+      name,
+      email,
+      password,
+      phone
+    }
+
+    console.log(data);
+
+    dispatch(signupUser(data))
+  }
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -29,15 +51,16 @@ const SignIn = ({navigation}) => {
         </View>
         <Text style={styles.SignUp}>SIGN UP</Text>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Name" />
+          <TextInput style={styles.Name} placeholder="Name" onChangeText={(text) => setName(text)} />
         </View>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Email" />
+          <TextInput style={styles.Name} placeholder="Email" onChangeText={(text) => setEmail(text)} />
         </View>
         <View style={[styles.NameBox, {flexDirection: 'row'}]}>
           <TextInput
             style={styles.Name}
             placeholder="Password"
+            onChangeText={(text) => setPassword(text)}
             secureTextEntry={hidePass ? true : false}
             flex={1}
           />
@@ -49,11 +72,11 @@ const SignIn = ({navigation}) => {
           />
         </View>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Phone no" />
+          <TextInput style={styles.Name} placeholder="Phone no" onChangeText={(text) => setPhone(text)} />
         </View>
         <TouchableOpacity
           style={styles.SignUpBox}
-          onPress={() => navigation.navigate('Login')}>
+          onPress={() => handleSignup()}>
           <Text style={styles.Sign}>Sign Up</Text>
         </TouchableOpacity>
         <View
