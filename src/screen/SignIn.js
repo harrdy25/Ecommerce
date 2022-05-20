@@ -63,6 +63,7 @@ const SignIn = ({navigation}) => {
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={hidePass ? true : false}
             flex={1}
+            
           />
           <Ionicons
             name={hidePass ? 'eye-off' : 'eye'}

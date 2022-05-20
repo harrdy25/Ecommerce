@@ -6,6 +6,27 @@
       "password": "123456",
       "phone": "8866554433",
       "id": 1
+    },
+    {
+      "name": "Amit45",
+      "email": "kuku@gmail.com",
+      "password": "112233",
+      "phone": "8866554433",
+      "id": 2
+    },
+    {
+      "name": "Amit45",
+      "email": "Amit@gmail.com",
+      "password": "123456",
+      "phone": "8866554433",
+      "id": 3
+    },
+    {
+      "name": "Amit20",
+      "email": "Amit@gmail.com",
+      "password": "123456",
+      "phone": "8866554433",
+      "id": 4
     }
   ]
 }

@@ -11,10 +11,27 @@ import React, {useState} from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
 import {images} from '../assets/Images';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import { useDispatch, useSelector } from 'react-redux';
+import { clickLogin } from '../redux/action/user.action';
 
 const Login = ({navigation}) => {
 
   const [hidePass, setHidePass] = useState(true);
+
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.users);
+
+  const handleLogin = () => {
+    let loginData = {
+      email,
+      password,
+    };
+
+    dispatch(clickLogin(loginData, navigation));
+  };
 
   return (
     <SafeAreaView style={{flex: 1}}>
@@ -31,12 +48,15 @@ const Login = ({navigation}) => {
         <Text style={styles.SignUp}>WELCOME BACK</Text>
 
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Email" />
+          <TextInput style={styles.Name} placeholder="Email"
+          autoCapitalize='none'
+          onChangeText={email => setEmail(email)} />
         </View>
         <View style={[styles.NameBox, {flexDirection: 'row'}]}>
           <TextInput style={styles.Name} 
           placeholder="Password" 
           flex={1} 
+          onChangeText={email => setPassword(email)}
           secureTextEntry={hidePass ? true : false}
           />
           <Ionicons name={hidePass ? 'eye-off' : 'eye'} style={styles.MenuIcon} size={20} onPress={() => setHidePass(!hidePass)}/>
@@ -64,7 +84,7 @@ const Login = ({navigation}) => {
         </View>
         <TouchableOpacity
           style={styles.SignUpBox}
-          onPress={() => navigation.navigate('Login')}>
+          onPress={() => handleLogin()}>
           <Text style={styles.Sign}>Login</Text>
         </TouchableOpacity>
         <Text style={{fontSize: 18, textAlign: 'center'}}>

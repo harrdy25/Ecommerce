@@ -1,3 +1,5 @@
+import * as ActionTypes from '../ActionTypes';
+
 import { BASE_URL } from "../../shared/baseUrl";
 
 export const signupUser = (data) => (dispatch) => {
@@ -21,3 +23,29 @@ export const signupUser = (data) => (dispatch) => {
     }
 }
 
+export const clickLogin = (loginData, navigatino) => dispatch => {
+    let flag = 0, id = 0;
+
+    fetch(BASE_URL + 'users', {
+        method: 'GET',
+    })
+        .then(response => response.json())
+        .then(result => {
+            result.map(item => {
+                if (
+                    item.email == loginData.email &&
+                    item.password == loginData.password
+                ) {
+                    flag = 1;
+                    id = item.id;
+                }
+            });
+            if (flag === 1) {
+                dispatch({ type: ActionTypes.SIGNIN_SUCCESS, payload: id })
+                navigatino.navigate("Home")
+            } else {
+                dispatch({ type: ActionTypes.SIGNIN_ERROR, payload: "Wrong Email/Password" })
+            }
+        });
+
+};
