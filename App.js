@@ -42,8 +42,8 @@ function TabHandler() {
         tabBarInactiveTintColor: '#757575',
       })}>
       <Tab.Screen
-        name="Counter"
-        component={Counter}
+        name="Welcome"
+        component={Welcome}
         options={{ headerShown: false }}
       />
       <Tab.Screen
