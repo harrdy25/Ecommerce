@@ -28,6 +28,13 @@ export const ProductReducer = (state = initValue, action) => {
                 isloading: false,
                 error: ''
             }
+        case ActionType.DELETE_PRODUCT:
+            return {
+                ...state,
+                product: state.product.filter((p) => p.id !== action.payload),
+                isloading: false,
+                error: ''
+            }
         case ActionType.ERROR_PRODUCT:
             return {
                 ...state,

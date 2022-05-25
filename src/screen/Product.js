@@ -10,35 +10,69 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchProduct, insertProduct } from '../redux/action/Product.Action';
+import { deleteProduct, fetchProduct, insertProduct } from '../redux/action/Product.Action';
 
 const Product = ({ navigation }) => {
 
   const [name, setName] = useState('');
   const [info, setInfo] = useState('');
   const [price, setPrice] = useState('');
+  const [area, setArea] = useState('');
 
   const dispatch = useDispatch();
-  const Iproduct = useSelector(state => state.product);
+  const product = useSelector(state => state.product);
 
   const handlerSubmit = () => {
     let pData = {
-      name, info, price
+      name, info, price, area
     }
     dispatch(insertProduct(pData));
   }
 
   useEffect(() => {
-    dispatch(fetchProduct())
-  }, [])
+    dispatch(fetchProduct());
+  }, []);
+
+  const handleDelete = (id) => {
+    dispatch(deleteProduct(id))
+  }
 
   const renderItem = ({ item }) => {
     return (
-      <View>
-        <Text>{item.name}</Text>
+      <View style={styles.Box}>
+        <View style={{ margin: 5 }}>
+          <View style={{ flexDirection: 'row' }}>
+            <Text style={styles.TitleName}>{item.name}</Text>
+            <Text style={styles.Price}>₹ {item.price}</Text>
+          </View>
+          <View style={{ flexDirection: 'row' }}>
+            <View style={{ flex: 1 }}>
+              <Text style={styles.Information}>{item.info}</Text>
+              <Text style={styles.Area}>{item.area}</Text>
+            </View>
+            <View style={{ flexDirection: 'row', alignSelf: 'center' }}>
+              <TouchableOpacity onPress={() => handleDelete(item.id)}>
+                <Entypo
+                  name="cross"
+                  size={30}
+                  color={'red'}
+                  style={styles.Icon}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity>
+                <Entypo
+                  name="edit"
+                  size={25}
+                  color={'green'}
+                  style={styles.Icon}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
       </View>
-    )
-  }
+    );
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -55,13 +89,13 @@ const Product = ({ navigation }) => {
         <View style={{ borderWidth: 1 }} />
         <Text style={styles.Fashion}>Ad title*</Text>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Title name...." 
-          onChangeText={(text) => setName(text)}
+          <TextInput style={styles.Name} placeholder="Title name...."
+            onChangeText={(text) => setName(text)}
           />
         </View>
         <Text style={styles.Fashion}>Additional information*</Text>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Add Descriptions" onChangeText={(text) => setInfo(text)}/>
+          <TextInput style={styles.Name} placeholder="Add Descriptions" onChangeText={(text) => setInfo(text)} />
         </View>
         {/* <Text style={styles.Fashion}>Upload Images*</Text> */}
         {/* <View
@@ -78,7 +112,12 @@ const Product = ({ navigation }) => {
         <Text style={styles.Fashion}>₹ Price*</Text>
         <View style={styles.NameBox}>
           <TextInput style={styles.Name} placeholder="₹ 00.0"
-          onChangeText={(text) => setPrice(text)} />
+            onChangeText={(text) => setPrice(text)} />
+        </View>
+        <Text style={styles.Fashion}>Area*</Text>
+        <View style={styles.NameBox}>
+          <TextInput style={styles.Name} placeholder="address...."
+            onChangeText={(text) => setArea(text)} />
         </View>
 
         <TouchableOpacity style={styles.SubmitBox} onPress={() => handlerSubmit()}>
@@ -86,7 +125,7 @@ const Product = ({ navigation }) => {
         </TouchableOpacity>
         <View>
           <FlatList
-            data={Iproduct.product}
+            data={product.product}
             renderItem={renderItem}
             keyExtractor={item => item.id}
           />
@@ -138,5 +177,33 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     textAlign: 'center',
     color: 'white',
+  },
+  Box: {
+    marginHorizontal: 16,
+    marginVertical: 5,
+    backgroundColor: '#bdbdbd',
+    borderRadius: 10,
+  },
+  TitleName: {
+    fontSize: 18,
+    fontWeight: '600',
+    flex: 1,
+  },
+  Price: {
+    fontSize: 20,
+    fontWeight: '700',
+    color: '#003d00'
+  },
+  Information: {
+    fontSize: 16,
+    fontWeight: '600',
+    marginVertical: 5,
+  },
+  Area: {
+    fontSize: 14,
+    fontWeight: '600',
+  },
+  Icon: {
+    marginHorizontal: 10,
   },
 });
