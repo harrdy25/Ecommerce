@@ -29,14 +29,7 @@
       "id": 4
     }
   ],
-  "product": [
-    {
-      "id": 825,
-      "name": "Yamaha",
-      "info": "Model 2018, km 2500",
-      "price": "35000",
-      "area": "Sarthana Jakatnaka"
-    },
+  "products": [
     {
       "id": 801,
       "name": "Yamaha",

@@ -10,14 +10,15 @@ import {
 } from 'react-native';
 import Entypo from 'react-native-vector-icons/Entypo';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteProduct, fetchProduct, insertProduct } from '../redux/action/Product.Action';
+import { deleteProduct, fetchProduct, insertProduct, updateProduct } from '../redux/action/Product.Action';
 
 const Product = ({ navigation }) => {
-
+  const [update, setUpdate] = useState(0);
   const [name, setName] = useState('');
   const [info, setInfo] = useState('');
   const [price, setPrice] = useState('');
   const [area, setArea] = useState('');
+  const [id, setId] = useState(0);
 
   const dispatch = useDispatch();
   const product = useSelector(state => state.product);
@@ -36,6 +37,28 @@ const Product = ({ navigation }) => {
   const handleDelete = (id) => {
     dispatch(deleteProduct(id))
   }
+
+  const handleEdit = (id) => {
+    let fData = product.product.filter((p) => p.id === id);
+    setName(fData[0].name);
+    setInfo(fData[0].info);
+    setArea(fData[0].area);
+    setPrice(fData[0].price);
+    setId(id);
+    setUpdate(1);
+  }
+
+  const handlerUpdate = () => {
+    let pData = {
+      id: id,
+      name, info, price, area
+    }
+
+    dispatch(updateProduct(pData))
+
+  }
+
+  console.log("bbbbbb", name);
 
   const renderItem = ({ item }) => {
     return (
@@ -59,7 +82,7 @@ const Product = ({ navigation }) => {
                   style={styles.Icon}
                 />
               </TouchableOpacity>
-              <TouchableOpacity>
+              <TouchableOpacity onPress={() => handleEdit(item.id)}>
                 <Entypo
                   name="edit"
                   size={25}
@@ -89,13 +112,13 @@ const Product = ({ navigation }) => {
         <View style={{ borderWidth: 1 }} />
         <Text style={styles.Fashion}>Ad title*</Text>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Title name...."
+          <TextInput value={name} style={styles.Name} placeholder="Title name...."
             onChangeText={(text) => setName(text)}
           />
         </View>
         <Text style={styles.Fashion}>Additional information*</Text>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Add Descriptions" onChangeText={(text) => setInfo(text)} />
+          <TextInput value={info} style={styles.Name} placeholder="Add Descriptions" onChangeText={(text) => setInfo(text)} />
         </View>
         {/* <Text style={styles.Fashion}>Upload Images*</Text> */}
         {/* <View
@@ -111,18 +134,25 @@ const Product = ({ navigation }) => {
         </View> */}
         <Text style={styles.Fashion}>₹ Price*</Text>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="₹ 00.0"
+          <TextInput value={price} style={styles.Name} placeholder="₹ 00.0"
             onChangeText={(text) => setPrice(text)} />
         </View>
         <Text style={styles.Fashion}>Area*</Text>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="address...."
+          <TextInput value={area} style={styles.Name} placeholder="address...."
             onChangeText={(text) => setArea(text)} />
         </View>
+        {
+          update ?
+            <TouchableOpacity style={styles.SubmitBox} onPress={() => handlerUpdate()}>
+              <Text style={styles.Submit}>Update</Text>
+            </TouchableOpacity>
+            :
+            <TouchableOpacity style={styles.SubmitBox} onPress={() => handlerSubmit()}>
+              <Text style={styles.Submit}>Submit</Text>
+            </TouchableOpacity>
+        }
 
-        <TouchableOpacity style={styles.SubmitBox} onPress={() => handlerSubmit()}>
-          <Text style={styles.Submit}>Submit</Text>
-        </TouchableOpacity>
         <View>
           <FlatList
             data={product.product}
