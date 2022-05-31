@@ -38,16 +38,17 @@ const Home = ({navigation}) => {
             <MaterialCommunityIcons name="chevron-double-right" size={30} />
           </TouchableOpacity>
           <View style={{borderWidth: 1}} />
-          <View
+          <TouchableOpacity
             style={{
               flexDirection: 'row',
               marginHorizontal: 10,
               marginVertical: 5,
-            }}>
+            }}
+            onPress={() => navigation.navigate('Counter')}>
             <Entypo name="mobile" size={30} />
             <Text style={styles.Fashion}>Mobile</Text>
             <MaterialCommunityIcons name="chevron-double-right" size={30} />
-          </View>
+          </TouchableOpacity>
           <View style={{borderWidth: 1}} />
           <View
             style={{

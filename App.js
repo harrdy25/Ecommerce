@@ -12,8 +12,11 @@ import Login from './src/screen/Login';
 import SignIn from './src/screen/SignIn';
 import Product from './src/screen/Product';
 import { Provider } from 'react-redux';
-import { store } from './src/redux/store';
+import { configStore } from './src/redux/store';
+import Cart from './src/screen/Cart';
+import { PersistGate } from 'redux-persist/integration/react';
 import Counter from './src/screen/Counter';
+import Shopping from './src/screen/Shopping';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -75,71 +78,90 @@ function HomeScreenStack() {
         options={{ headerShown: false }}
         component={Product}
       />
+      <HomeStack.Screen
+        name="Shopping"
+        options={{ headerShown: false }}
+        component={Shopping}
+      />
+      <HomeStack.Screen
+        name="Cart"
+        options={{ headerShown: false }}
+        component={Cart}
+      />
+      <HomeStack.Screen
+        name="Counter"
+        options={{ headerShown: false }}
+        component={Counter}
+      />
     </HomeStack.Navigator>
   );
 }
 
 const App = () => {
+const {store, persistor} = configStore();
+
   return (
     <Provider store={store}>
-      <NavigationContainer>
-        <Drawer.Navigator
-          screenOptions={{ headerShown: false }}
-          initialRouteName="Welcome">
-          <Drawer.Screen
-            name="Welcomee"
-            component={TabHandler}
-            options={{
-              drawerIcon: ({ focused, size }) => (
-                <MaterialCommunityIcons
-                  name="alpha-w-circle"
-                  size={size}
-                  color={'#ffa000'}
-                />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="Home"
-            component={Home}
-            options={{
-              drawerIcon: ({ focused, size }) => (
-                <MaterialCommunityIcons
-                  name="home"
-                  size={size}
-                  color={'#ffa000'}
-                />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="SignUp"
-            component={SignIn}
-            options={{
-              drawerIcon: ({ focused, size }) => (
-                <MaterialCommunityIcons
-                  name="login"
-                  size={size}
-                  color={'#ffa000'}
-                />
-              ),
-            }}
-          />
-          <Drawer.Screen
-            name="Login"
-            component={Login}
-            options={{
-              drawerIcon: ({ focused, size }) => (
-                <MaterialCommunityIcons
-                  name="logout"
-                  size={size}
-                  color={'#ffa000'}
-                />
-              ),
-            }}
-          />
-        </Drawer.Navigator>
-      </NavigationContainer>
+      <PersistGate loading={null} persistor={persistor}>
+        <NavigationContainer>
+          <Drawer.Navigator
+            screenOptions={{ headerShown: false }}
+            initialRouteName="Welcome">
+            <Drawer.Screen
+              name="Welcomee"
+              component={TabHandler}
+              options={{
+                drawerIcon: ({ focused, size }) => (
+                  <MaterialCommunityIcons
+                    name="alpha-w-circle"
+                    size={size}
+                    color={'#ffa000'}
+                  />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Home"
+              component={Home}
+              options={{
+                drawerIcon: ({ focused, size }) => (
+                  <MaterialCommunityIcons
+                    name="home"
+                    size={size}
+                    color={'#ffa000'}
+                  />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="SignUp"
+              component={SignIn}
+              options={{
+                drawerIcon: ({ focused, size }) => (
+                  <MaterialCommunityIcons
+                    name="login"
+                    size={size}
+                    color={'#ffa000'}
+                  />
+                ),
+              }}
+            />
+            <Drawer.Screen
+              name="Login"
+              component={Login}
+              options={{
+                drawerIcon: ({ focused, size }) => (
+                  <MaterialCommunityIcons
+                    name="logout"
+                    size={size}
+                    color={'#ffa000'}
+                  />
+                ),
+              }}
+            />
+          </Drawer.Navigator>
+        </NavigationContainer>
+      </PersistGate>
     </Provider>
   );
 };

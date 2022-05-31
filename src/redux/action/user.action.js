@@ -42,7 +42,7 @@ export const clickLogin = (loginData, navigatino) => dispatch => {
             });
             if (flag === 1) {
                 dispatch({ type: ActionTypes.SIGNIN_SUCCESS, payload: id })
-                navigatino.navigate("Home")
+                navigatino.navigate("Shopping")
             } else {
                 dispatch({ type: ActionTypes.SIGNIN_ERROR, payload: "Wrong Email/Password" })
             }
