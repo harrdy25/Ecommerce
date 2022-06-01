@@ -1,3 +1,4 @@
+import { getAllProductsDetails } from "../../comman/apis/product.api";
 import { BASE_URL } from "../../shared/baseUrl";
 import * as ActionType from '../ActionTypes';
 
@@ -38,22 +39,29 @@ export const errorProduct = (error) => (dispatch) => {
 export const fetchProduct = () => (dispatch) => {
   try {
     dispatch(loadingProduct());
-    fetch(BASE_URL + "products", {
-      method: 'GET',
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw new Error("blabalasdbasjbdawn");
-        }
-      })
-      .then(data => {
-        dispatch({ type: ActionType.GET_PRODUCT, payload: data })
+    // fetch(BASE_URL + "products", {
+    //   method: 'GET',
+    // })
+    //   .then(response => {
+    //     if (response.ok) {
+    //       return response.json()
+    //     } else {
+    //       throw new Error("blabalasdbasjbdawn");
+    //     }
+    //   })
+    //   .then(data => {
+    //     dispatch({ type: ActionType.GET_PRODUCT, payload: data })
+    //   })
+    //   .catch(error => {
+    //     dispatch(errorProduct(error.message))
+    //   })
+    getAllProductsDetails()
+      .then(({data}) => {
+        dispatch({ type: ActionType.GET_PRODUCT, payload: data });
       })
       .catch(error => {
-        dispatch(errorProduct(error.message))
-      })
+        dispatch(errorProduct(error.message));
+      });
   } catch (e) {
     dispatch(errorProduct(e));
   }
