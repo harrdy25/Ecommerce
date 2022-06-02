@@ -27,6 +27,13 @@
       "password": "123456",
       "phone": "8866554433",
       "id": 4
+    },
+    {
+      "name": "Dhruv Goyani",
+      "email": "Goyani@gmail.com",
+      "password": "11223399",
+      "phone": "8646841511",
+      "id": 5
     }
   ],
   "products": [
@@ -38,25 +45,11 @@
       "area": "Sarthana Jakatnaka"
     },
     {
-      "id": 455,
-      "name": "Effev",
-      "info": "Hh",
-      "price": "886764",
-      "area": "Hjojljlj"
-    },
-    {
-      "id": 711,
-      "name": "Adada",
-      "info": "Ihuhih",
-      "price": "111111",
-      "area": "Kkopk"
-    },
-    {
-      "id": 323,
-      "name": "Jht",
-      "info": "Tjtyj",
-      "price": "Tjt",
-      "area": "Tyjt"
+      "id": 630,
+      "name": "Goyani",
+      "info": "Dhruv",
+      "price": "1111111",
+      "area": "Varachha"
     }
   ]
 }

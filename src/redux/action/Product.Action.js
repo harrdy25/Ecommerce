@@ -1,4 +1,4 @@
-import { getAllProductsDetails } from "../../comman/apis/product.api";
+import { deleteAllProductRequest, getAllProductRequest, postAllProductRequest, updateAllProductRequest } from "../../comman/apis/product.api";
 import { BASE_URL } from "../../shared/baseUrl";
 import * as ActionType from '../ActionTypes';
 
@@ -9,15 +9,16 @@ export const insertProduct = (proData) => (dispatch) => {
       id: Math.floor(Math.random() * 1000),
       ...proData
     }
-    fetch(BASE_URL + 'products', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(fData),
-    })
-      .then(response => response.json())
-      .then(data => {
+    // fetch(BASE_URL + 'products', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(fData),
+    // })
+    //   .then(response => response.json())
+    postAllProductRequest(fData)
+      .then(({data}) => {
         dispatch({ type: ActionType.INSERT_PRODUCT, payload: fData })
       })
       .catch(error => {
@@ -55,7 +56,7 @@ export const fetchProduct = () => (dispatch) => {
     //   .catch(error => {
     //     dispatch(errorProduct(error.message))
     //   })
-    getAllProductsDetails()
+    getAllProductRequest()
       .then(({data}) => {
         dispatch({ type: ActionType.GET_PRODUCT, payload: data });
       })
@@ -69,16 +70,17 @@ export const fetchProduct = () => (dispatch) => {
 export const deleteProduct = (id) => (dispatch) => {
   try {
     dispatch(loadingProduct());
-    fetch(BASE_URL + "products/" + id, {
-      method: 'DELETE',
-    })
-      .then(response => {
-        if (response.ok) {
-          return response.json()
-        } else {
-          throw new Error("blabalasdbasjbdawn");
-        }
-      })
+    // fetch(BASE_URL + "products/" + id, {
+    //   method: 'DELETE',
+    // })
+    //   .then(response => {
+    //     if (response.ok) {
+    //       return response.json()
+    //     } else {
+    //       throw new Error("blabalasdbasjbdawn");
+    //     }
+    //   })
+    deleteAllProductRequest(id)
       .then(data => {
         dispatch({ type: ActionType.DELETE_PRODUCT, payload: id })
       })
@@ -94,15 +96,17 @@ export const updateProduct = (data) => (dispatch) => {
   try {
     dispatch(loadingProduct());
     
-    fetch(BASE_URL + 'products/' + data.id, {
-      method: 'PUT',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(data),
-    })
-      .then(response => response.json())
-      .then(data => {
+    // fetch(BASE_URL + 'products/' + data.id, {
+    //   method: 'PUT',
+    //   headers: {
+    //     'Content-Type': 'application/json',
+    //   },
+    //   body: JSON.stringify(data),
+    // })
+    //   .then(response => response.json())
+
+    updateAllProductRequest(data.id,data)
+      .then(({data}) => {
         dispatch({type: ActionType.UPDATE_PRODUCT, payload: data});
       })
       .catch(error => {
