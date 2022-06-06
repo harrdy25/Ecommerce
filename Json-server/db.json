@@ -34,6 +34,13 @@
       "password": "11223399",
       "phone": "8646841511",
       "id": 5
+    },
+    {
+      "name": "Werner",
+      "email": "123",
+      "password": "123",
+      "phone": "Rewrwrw",
+      "id": 6
     }
   ],
   "products": [
@@ -46,7 +53,7 @@
     },
     {
       "id": 630,
-      "name": "Goyani",
+      "name": "Goyani hfgffqq",
       "info": "Dhruv",
       "price": "1111111",
       "area": "Varachha"

@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View } from 'react-native';
-import React from 'react';
+import React, { useEffect } from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -17,6 +17,7 @@ import Cart from './src/screen/Cart';
 import { PersistGate } from 'redux-persist/integration/react';
 import Counter from './src/screen/Counter';
 import Shopping from './src/screen/Shopping';
+import SplashScreen from 'react-native-splash-screen'
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -79,7 +80,7 @@ function HomeScreenStack() {
         component={Product}
       />
       <HomeStack.Screen
-        name="Shopping"
+        name='Shopping'
         options={{ headerShown: false }}
         component={Shopping}
       />
@@ -98,8 +99,11 @@ function HomeScreenStack() {
 }
 
 const App = () => {
-const {store, persistor} = configStore();
+  const { store, persistor } = configStore();
 
+  useEffect(() => {
+    SplashScreen.hide();
+  }, [])
   return (
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>

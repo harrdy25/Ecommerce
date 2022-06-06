@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   Text,
@@ -10,12 +10,12 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 
-const Home = ({navigation}) => {
+const Home = ({ navigation }) => {
   // const count = useSelector(state => state.counter)
   return (
-    <SafeAreaView style={{flex: 1}}>
-      <View style={{flex: 1}}>
-        <View style={{flexDirection: 'row'}}>
+    <SafeAreaView style={{ flex: 1 }}>
+      <View style={{ flex: 1 }}>
+        <View style={{ flexDirection: 'row' }}>
           <Entypo
             name="menu"
             size={35}
@@ -24,7 +24,7 @@ const Home = ({navigation}) => {
           />
           <Text style={styles.Title}>Home</Text>
         </View>
-        <View style={{borderWidth: 1}} />
+        <View style={{ borderWidth: 1 }} />
         <View>
           <TouchableOpacity
             style={{
@@ -37,7 +37,7 @@ const Home = ({navigation}) => {
             <Text style={styles.Fashion}>Fashion</Text>
             <MaterialCommunityIcons name="chevron-double-right" size={30} />
           </TouchableOpacity>
-          <View style={{borderWidth: 1}} />
+          <View style={{ borderWidth: 1 }} />
           <TouchableOpacity
             style={{
               flexDirection: 'row',
@@ -49,7 +49,7 @@ const Home = ({navigation}) => {
             <Text style={styles.Fashion}>Mobile</Text>
             <MaterialCommunityIcons name="chevron-double-right" size={30} />
           </TouchableOpacity>
-          <View style={{borderWidth: 1}} />
+          <View style={{ borderWidth: 1 }} />
           <View
             style={{
               flexDirection: 'row',
@@ -60,7 +60,7 @@ const Home = ({navigation}) => {
             <Text style={styles.Fashion}>Electronics & Appliances</Text>
             <MaterialCommunityIcons name="chevron-double-right" size={30} />
           </View>
-          <View style={{borderWidth: 1}} />
+          <View style={{ borderWidth: 1 }} />
           <View
             style={{
               flexDirection: 'row',
@@ -71,7 +71,7 @@ const Home = ({navigation}) => {
             <Text style={styles.Fashion}>Home Decore</Text>
             <MaterialCommunityIcons name="chevron-double-right" size={30} />
           </View>
-          <View style={{borderWidth: 1}} />
+          <View style={{ borderWidth: 1 }} />
         </View>
       </View>
     </SafeAreaView>

@@ -23,7 +23,7 @@ export const signupUser = (data) => (dispatch) => {
     }
 }
 
-export const clickLogin = (loginData, navigatino) => dispatch => {
+export const clickLogin = (loginData, navigation) => dispatch => {
     let flag = 0, id = 0;
 
     fetch(BASE_URL + 'users', {
@@ -42,7 +42,7 @@ export const clickLogin = (loginData, navigatino) => dispatch => {
             });
             if (flag === 1) {
                 dispatch({ type: ActionTypes.SIGNIN_SUCCESS, payload: id })
-                navigatino.navigate("Shopping")
+                navigation.navigate('Shopping')
             } else {
                 dispatch({ type: ActionTypes.SIGNIN_ERROR, payload: "Wrong Email/Password" })
             }

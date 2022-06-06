@@ -61,7 +61,7 @@ const Login = ({navigation}) => {
           />
           <Ionicons name={hidePass ? 'eye-off' : 'eye'} style={styles.MenuIcon} size={20} onPress={() => setHidePass(!hidePass)}/>
         </View>
-        <Text
+        <Text onPress={() => navigation.navigate('Shopping')}
           style={{
             fontSize: 18,
             marginLeft: 10,
