@@ -2,32 +2,39 @@ import { deleteAllProductRequest, getAllProductRequest, postAllProductRequest, u
 import { BASE_URL } from "../../shared/baseUrl";
 import * as ActionType from '../ActionTypes';
 
+// export const insertProduct = (proData) => (dispatch) => {
+//   try {
+//     dispatch(loadingProduct());
+//     let fData = {
+//       id: Math.floor(Math.random() * 1000),
+//       ...proData
+//     }
+//     // fetch(BASE_URL + 'products', {
+//     //   method: 'POST',
+//     //   headers: {
+//     //     'Content-Type': 'application/json',
+//     //   },
+//     //   body: JSON.stringify(fData),
+//     // })
+//     //   .then(response => response.json())
+//     postAllProductRequest(fData)
+//       .then(({data}) => {
+//         dispatch({ type: ActionType.INSERT_PRODUCT, payload: fData })
+//       })
+//       .catch(error => {
+//         dispatch(errorProduct(error))
+//       });
+//   } catch (e) {
+//     dispatch(errorProduct(e))
+//   }
+// };
+
 export const insertProduct = (proData) => (dispatch) => {
-  try {
-    dispatch(loadingProduct());
-    let fData = {
-      id: Math.floor(Math.random() * 1000),
-      ...proData
-    }
-    // fetch(BASE_URL + 'products', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-Type': 'application/json',
-    //   },
-    //   body: JSON.stringify(fData),
-    // })
-    //   .then(response => response.json())
-    postAllProductRequest(fData)
-      .then(({data}) => {
-        dispatch({ type: ActionType.INSERT_PRODUCT, payload: fData })
-      })
-      .catch(error => {
-        dispatch(errorProduct(error))
-      });
-  } catch (e) {
-    dispatch(errorProduct(e))
-  }
-};
+  dispatch({ type: ActionType.INSERT_PRODUCT, payload: proData })
+}
+export const setProductInsert = (data) => (dispatch) => {
+  dispatch({ type: ActionType.INSERTED_PRODUCT, payload: data })
+}
 
 export const loadingProduct = () => (dispatch) => {
   dispatch({ type: ActionType.LOADING_PRODUCT })
@@ -37,36 +44,45 @@ export const errorProduct = (error) => (dispatch) => {
   dispatch({ type: ActionType.ERROR_PRODUCT, payload: error })
 }
 
+// export const fetchProduct = () => (dispatch) => {
+//   try {
+//     dispatch(loadingProduct());
+//     // fetch(BASE_URL + "products", {
+//     //   method: 'GET',
+//     // })
+//     //   .then(response => {
+//     //     if (response.ok) {
+//     //       return response.json()
+//     //     } else {
+//     //       throw new Error("blabalasdbasjbdawn");
+//     //     }
+//     //   })
+//     //   .then(data => {
+//     //     dispatch({ type: ActionType.GET_PRODUCT, payload: data })
+//     //   })
+//     //   .catch(error => {
+//     //     dispatch(errorProduct(error.message))
+//     //   })
+//     getAllProductRequest()
+//       .then(({data}) => {
+//         dispatch({ type: ActionType.GET_PRODUCT, payload: data });
+//       })
+//       .catch(error => {
+//         dispatch(errorProduct(error.message));
+//       });
+//   } catch (e) {
+//     dispatch(errorProduct(e));
+//   }
+// };
+
 export const fetchProduct = () => (dispatch) => {
-  try {
-    dispatch(loadingProduct());
-    // fetch(BASE_URL + "products", {
-    //   method: 'GET',
-    // })
-    //   .then(response => {
-    //     if (response.ok) {
-    //       return response.json()
-    //     } else {
-    //       throw new Error("blabalasdbasjbdawn");
-    //     }
-    //   })
-    //   .then(data => {
-    //     dispatch({ type: ActionType.GET_PRODUCT, payload: data })
-    //   })
-    //   .catch(error => {
-    //     dispatch(errorProduct(error.message))
-    //   })
-    getAllProductRequest()
-      .then(({data}) => {
-        dispatch({ type: ActionType.GET_PRODUCT, payload: data });
-      })
-      .catch(error => {
-        dispatch(errorProduct(error.message));
-      });
-  } catch (e) {
-    dispatch(errorProduct(e));
-  }
-};
+  dispatch({ type: ActionType.GET_PRODUCT });
+}
+
+export const setProduct = (product) => (dispatch) => {
+  dispatch({ type: ActionType.RETRIEVED_PRODUCT, payload: product })
+}
+
 export const deleteProduct = (id) => (dispatch) => {
   try {
     dispatch(loadingProduct());
@@ -95,7 +111,7 @@ export const deleteProduct = (id) => (dispatch) => {
 export const updateProduct = (data) => (dispatch) => {
   try {
     dispatch(loadingProduct());
-    
+
     // fetch(BASE_URL + 'products/' + data.id, {
     //   method: 'PUT',
     //   headers: {
@@ -105,9 +121,9 @@ export const updateProduct = (data) => (dispatch) => {
     // })
     //   .then(response => response.json())
 
-    updateAllProductRequest(data.id,data)
-      .then(({data}) => {
-        dispatch({type: ActionType.UPDATE_PRODUCT, payload: data});
+    updateAllProductRequest(data.id, data)
+      .then(({ data }) => {
+        dispatch({ type: ActionType.UPDATE_PRODUCT, payload: data });
       })
       .catch(error => {
         dispatch(errorProduct(error));
@@ -116,4 +132,3 @@ export const updateProduct = (data) => (dispatch) => {
     dispatch(errorProduct(e));
   }
 }
- 

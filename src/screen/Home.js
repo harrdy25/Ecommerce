@@ -10,7 +10,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { useSelector } from 'react-redux';
 
-const Home = ({ navigation }) => {
+const Home = ({ navigation }) => {``
   // const count = useSelector(state => state.counter)
   return (
     <SafeAreaView style={{ flex: 1 }}>

@@ -46,11 +46,6 @@ function TabHandler() {
         tabBarInactiveTintColor: '#757575',
       })}>
       <Tab.Screen
-        name="Welcome"
-        component={Welcome}
-        options={{ headerShown: false }}
-      />
-      <Tab.Screen
         name="HOME"
         component={HomeScreenStack}
         options={{ headerShown: false }}

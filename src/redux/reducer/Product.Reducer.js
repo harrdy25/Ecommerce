@@ -7,6 +7,7 @@ const initValue = {
 };
 
 export const ProductReducer = (state = initValue, action) => {
+
     switch (action.type) {
         case ActionType.LOADING_PRODUCT:
             return {
@@ -14,14 +15,14 @@ export const ProductReducer = (state = initValue, action) => {
                 isloading: true,
                 error: ''
             }
-        case ActionType.GET_PRODUCT:
+        case ActionType.RETRIEVED_PRODUCT:
             return {
                 ...state,
                 product: action.payload,
                 isloading: false,
                 error: ''
             }
-        case ActionType.INSERT_PRODUCT:
+        case ActionType.INSERTED_PRODUCT:
             return {
                 ...state,
                 product: state.product.concat(action.payload),
