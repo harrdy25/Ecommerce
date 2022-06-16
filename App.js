@@ -12,7 +12,7 @@ import Login from './src/screen/Login';
 import SignIn from './src/screen/SignIn';
 import Product from './src/screen/Product';
 import { Provider } from 'react-redux';
-import { configStore } from './src/redux/store';
+import { configStore, persistor } from './src/redux/store';
 import Cart from './src/screen/Cart';
 import { PersistGate } from 'redux-persist/integration/react';
 import Counter from './src/screen/Counter';
@@ -94,13 +94,13 @@ function HomeScreenStack() {
 }
 
 const App = () => {
-  const { store, persistor } = configStore();
+  // const { store } = configStore;
 
   useEffect(() => {
     SplashScreen.hide();
   }, [])
   return (
-    <Provider store={store}>
+    <Provider store={configStore}>
       <PersistGate loading={null} persistor={persistor}>
         <NavigationContainer>
           <Drawer.Navigator

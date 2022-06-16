@@ -28,6 +28,7 @@ const Product = ({ navigation }) => {
     let pData = {
       name, info, price, area
     }
+    console.log("handlerSubmit");
     dispatch(insertProduct(pData));
     setName('');
     setInfo('');
