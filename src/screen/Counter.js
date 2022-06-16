@@ -75,11 +75,11 @@ export default function Counter() {
         return "Three Value";
     }
 
-    const All = () => {
+    const All = async () => {
         const oneVal = one();
         console.log(oneVal);
 
-        const twoVal = two();
+        const twoVal = await two();
         console.log(twoVal);
 
         const threeVal = three();
