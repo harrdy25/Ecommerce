@@ -7,14 +7,15 @@ import {
   TextInput,
   TouchableOpacity,
 } from 'react-native';
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import Entypo from 'react-native-vector-icons/Entypo';
-import {images} from '../assets/Images';
+import { images } from '../assets/Images';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useDispatch } from 'react-redux';
-import { signupUser } from '../redux/action/user.action';
+import { authSignupUser } from '../redux/action/user.action';
+import auth from '@react-native-firebase/auth';
 
-const SignIn = ({navigation}) => {
+const SignIn = ({ navigation }) => {
   const [hidePass, setHidePass] = useState(true);
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -25,20 +26,22 @@ const SignIn = ({navigation}) => {
 
   const handleSignup = () => {
     let data = {
-      //id: Math.floor(Math.random() * 1000),
       name,
       email,
       password,
       phone
     }
 
-    console.log(data);
+    dispatch(authSignupUser(data))   
 
-    dispatch(signupUser(data))
+    setEmail('');
+    setName('');
+    setPassword('');
+    setPhone('');
   }
 
   return (
-    <SafeAreaView style={{flex: 1}}>
+    <SafeAreaView style={{ flex: 1 }}>
       <View>
         <Entypo
           name="chevron-left"
@@ -46,24 +49,28 @@ const SignIn = ({navigation}) => {
           style={styles.MenuIcon}
           onPress={() => navigation.goBack()}
         />
-        <View style={{alignItems: 'center', marginVertical: 10}}>
+        <View style={{ alignItems: 'center', marginVertical: 10 }}>
           <Image style={styles.Logo} source={images.IMG_GRABBY_PNG} />
         </View>
         <Text style={styles.SignUp}>SIGN UP</Text>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Name" onChangeText={(text) => setName(text)} />
+          <TextInput style={styles.Name} placeholder="Name" value={name} onChangeText={(text) => setName(text)} />
         </View>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Email" onChangeText={(text) => setEmail(text)} />
+          <TextInput style={styles.Name}
+            placeholder="Email"
+            autoCapitalize="none"
+            value={email}
+            onChangeText={(text) => setEmail(text)} />
         </View>
-        <View style={[styles.NameBox, {flexDirection: 'row'}]}>
+        <View style={[styles.NameBox, { flexDirection: 'row' }]}>
           <TextInput
             style={styles.Name}
             placeholder="Password"
+            value={password}
             onChangeText={(text) => setPassword(text)}
             secureTextEntry={hidePass ? true : false}
             flex={1}
-            
           />
           <Ionicons
             name={hidePass ? 'eye-off' : 'eye'}
@@ -73,7 +80,7 @@ const SignIn = ({navigation}) => {
           />
         </View>
         <View style={styles.NameBox}>
-          <TextInput style={styles.Name} placeholder="Phone no" onChangeText={(text) => setPhone(text)} />
+          <TextInput style={styles.Name} placeholder="Phone no" value={phone} onChangeText={(text) => setPhone(text)} />
         </View>
         <TouchableOpacity
           style={styles.SignUpBox}
@@ -91,7 +98,7 @@ const SignIn = ({navigation}) => {
           <Ionicons name="logo-facebook" style={styles.MenuIcon} size={30} />
           <Ionicons name="logo-twitter" style={styles.MenuIcon} size={30} />
         </View>
-        <Text style={{fontSize: 18, textAlign: 'center'}}>
+        <Text style={{ fontSize: 18, textAlign: 'center' }}>
           You have an account already?{' '}
           <Text
             style={styles.Login}

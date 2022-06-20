@@ -3,27 +3,35 @@ import * as ActionTypes from '../ActionTypes';
 const initVal = {
     isLoading: false,
     user: null,
-    error: ''
+    error: '',
+    authMsg: ''
 }
 
-export const userReducer = (state = initVal, action) => {
+export const authUserReducer = (state = initVal, action) => {
     switch (action.type) {
-        case ActionTypes.SIGNUP_USER:
+        case ActionTypes.USER_EMAIL:
             return {
                 ...state,
-                user: action.payload
+                isLoading: false,
+                error: '',
+                user: null,
+                authMsg: action.payload
             }
         case ActionTypes.SIGNIN_SUCCESS:
             return {
                 ...state,
+                isLoading: false,
+                error: '',
                 user: action.payload,
-                error : ''
+                authMsg:''
             }
-        case ActionTypes.SIGNIN_ERROR:
+        case ActionTypes.AUTH_ERROR:
             return {
                 ...state,
+                isLoading: false,
+                error: action.payload,
                 user: null,
-                error: action.payload
+                authMsg:''
             }
         default:
             return state;

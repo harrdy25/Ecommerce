@@ -3,7 +3,9 @@ export const DECREMENT_COUNTER = "DECREMENT_COUNTER";
 
 export const SIGNUP_USER = "SIGNUP_USER";
 export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS"
-export const SIGNIN_ERROR = "SIGNIN_ERROR"
+export const AUTH_ERROR = "AUTH_ERROR"
+export const USER_EMAIL = "USER_EMAIL"
+
 
 export const LOADING_PRODUCT =  "LOADING_PRODUCT";
 

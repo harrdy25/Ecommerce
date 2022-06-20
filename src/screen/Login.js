@@ -12,7 +12,7 @@ import Entypo from 'react-native-vector-icons/Entypo';
 import {images} from '../assets/Images';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { useDispatch, useSelector } from 'react-redux';
-import { clickLogin } from '../redux/action/user.action';
+import { authClickLogin } from '../redux/action/user.action';
 
 const Login = ({navigation}) => {
 
@@ -30,7 +30,7 @@ const Login = ({navigation}) => {
       password,
     };
 
-    dispatch(clickLogin(loginData, navigation));
+    dispatch(authClickLogin(loginData));
   };
 
   return (
