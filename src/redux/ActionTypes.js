@@ -6,6 +6,9 @@ export const SIGNIN_SUCCESS = "SIGNIN_SUCCESS"
 export const AUTH_ERROR = "AUTH_ERROR"
 export const USER_EMAIL = "USER_EMAIL"
 
+export const SIGNOUT_USER = "SIGNOUT_USER";
+export const RESET_PASSWORD = "RESET_PASSWORD";
+
 
 export const LOADING_PRODUCT =  "LOADING_PRODUCT";
 

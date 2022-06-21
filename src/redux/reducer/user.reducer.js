@@ -23,7 +23,23 @@ export const authUserReducer = (state = initVal, action) => {
                 isLoading: false,
                 error: '',
                 user: action.payload,
-                authMsg:''
+                authMsg: ''
+            }
+        case ActionTypes.SIGNOUT_USER:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                user: null,
+                authMsg: action.payload
+            }
+        case ActionTypes.RESET_PASSWORD:
+            return {
+                ...state,
+                isLoading: false,
+                error: '',
+                user: null,
+                authMsg: action.payload
             }
         case ActionTypes.AUTH_ERROR:
             return {
@@ -31,7 +47,7 @@ export const authUserReducer = (state = initVal, action) => {
                 isLoading: false,
                 error: action.payload,
                 user: null,
-                authMsg:''
+                authMsg: ''
             }
         default:
             return state;
